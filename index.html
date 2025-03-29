@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Meta Tags สำหรับ SEO -->
+  <meta name="description" content="VisaBuddy - รับจ้างกดยูส WAH WHS พร้อมช่วยเหลือทุกขั้นตอนสมัครทำงานต่างประเทศอย่างมืออาชีพ">
+  <meta name="keywords" content="รับจ้างกดยูส, WAH, WHS, VisaBuddy, ทำงานต่างประเทศ, Working Holiday, Username Password">
+  <title>VisaBuddy - เพื่อนร่วมทางสู่การทำงานต่างประเทศ</title>
+  <style>
+    :root {
+      --primary-blue: #0071e3;
+      --gradient-start: #0a1f5c;
+      --gradient-end: #3a8fff;
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      color: #1d1d1f;
+      background: #fafafa;
+    }
+
+    /* Navigation */
+    .nav-container {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 0 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+
+    .nav-logo {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #1d1d1f;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-blue);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: linear-gradient(150deg, var(--gradient-start), var(--gradient-end));
+      animation: gradientAnimation 10s ease infinite;
+      color: white;
+      padding: 120px 2rem 80px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Animation for gradient background */
+    @keyframes gradientAnimation {
+      0% {
+        background: linear-gradient(150deg, var(--gradient-start), var(--gradient-end));
+      }
+      50% {
+        background: linear-gradient(150deg, var(--gradient-end), var(--gradient-start));
+      }
+      100% {
+        background: linear-gradient(150deg, var(--gradient-start), var(--gradient-end));
+      }
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    /* CTA Button */
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 1.2rem 2.5rem;
+      background: var(--primary-blue);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      margin-top: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255,255,255,0.3),
+          transparent
+      );
+      transition: all 0.6s ease;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,113,227,0.3);
+    }
+
+    .line-button {
+      background: #06C755;
+    }
+
+    .twitter-button {
+      background: #1DA1F2;
+    }
+
+    /* Sections Common Style & Reveal Animation */
+    .section {
+      padding: 8rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section h2 {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      font-weight: 600;
+      position: relative;
+    }
+
+    /* Underline effect for section titles */
+    .section h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-blue);
+      border-radius: 2px;
+    }
+
+    /* About Section Content */
+    #about p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* Services Section */
+    #services {
+      background-color: #ffffff;
+    }
+
+    #services p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* Infographic Section */
+    .infographic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 600px) {
+      .infographic-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .infographic-item {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 18px;
+      background: #f5f5f7;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .infographic-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .infographic-item h3 {
+      transition: margin-bottom 0.3s ease;
+    }
+
+    .infographic-item:hover h3 {
+      margin-bottom: 1rem;
+    }
+
+    .infographic-item img {
+      height: 60px;
+      margin-bottom: 1.5rem;
+    }
+
+    .extra-info {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      color: #666;
+      font-size: 0.9em;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    .infographic-item:hover .extra-info {
+      max-height: 300px;
+      opacity: 1;
+    }
+
+    /* Contact Section */
+    #contact {
+      text-align: center;
+      background: #f5f5f7;
+    }
+
+    #contact p {
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    /* Keyframes for fadeInUp animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="nav-container">
+    <nav>
+      <img src="VisaBuddy_Logo.png" alt="VisaBuddy Logo" class="nav-logo" />
+      <div class="nav-links">
+        <a href="#about">เกี่ยวกับเรา</a>
+        <a href="#services">บริการ</a>
+        <a href="#why">ทำไมต้องเรา</a>
+        <a href="#contact">ติดต่อปรึกษา</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>เปิดประสบการณ์<br><span style="color: #FFD700;">Working Holiday</span> อย่างมั่นใจ</h1>
+      <p>เพื่อนร่วมทางที่คุณวางใจได้ 100%</p>
+      <a href="#contact" class="cta-button" style="margin-top: 3rem;">
+          📩 สอบถามข้อมูลเพิ่มเติม
+      </a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <h2>จุดเริ่มต้นของ VisaBuddy</h2>
+    <div style="max-width: 900px; margin: 0 auto;">
+      <p>
+        เราเคยเห็นหลายคนที่มีเป้าหมายและความฝันอยากไปใช้ชีวิตต่างประเทศ เพื่อเจอโลกกว้าง และเก็บเกี่ยวประสบการณ์ชีวิต แต่กลับต้องพบกับความผิดหวังอย่างที่ไม่น่าจะเกิดขึ้น ความผิดหวังนั้นไม่ได้มาจากการขาดการเตรียมตัวหรือโชคไม่เข้าข้าง แต่มาจากการถูกหลอกลวงหรือถูกเอาเปรียบจากตัวแทนหรือผู้ให้บริการขอ username password สำหรับเข้าร่วมโครงการ เช่น การเก็บค่าบริการสูงเกินจริง ขาดความชัดเจนในการดำเนินการ หรือที่ร้ายแรงที่สุดคือการเปลี่ยนข้อมูลของผู้สมัคร เพื่อเรียกเก็บเงินเพิ่มจากที่ตกลงกันไว้ ทำให้ความหวังในการเดินทางของหลายคนต้องจบลงอย่างไม่ควรจะเป็น
+      </p>
+      <p>
+        พวกเราเข้าใจดีถึงความเจ็บปวดและเสียใจจากเหตุการณ์เหล่านี้ เพราะเราก็เคยมีประสบการณ์และเคยผ่านจุดที่ความฝันเกือบพังทลายเช่นกัน นี่คือแรงบันดาลใจสำคัญที่ทำให้เราสร้าง <strong style="color: var(--primary-blue);">VisaBuddy</strong> ขึ้นมา เพื่อช่วยให้ทุกคนที่มีความฝันอยากไปใช้ชีวิตต่างประเทศสามารถเดินทางไปถึงเป้าหมายได้อย่างมั่นใจ และสบายใจมากที่สุด
+      </p>
+      <p>
+        <strong style="color: var(--primary-blue);">VisaBuddy</strong> จึงถูกสร้างขึ้นด้วยแนวคิดของการเป็น "เพื่อนที่คุณสามารถไว้ใจได้" พร้อมช่วยเหลือทุกขั้นตอนในการสมัครและกดโควต้า Work and Holiday (WAH) และ Working Holiday Scheme (WHS) ผ่านระบบอัตโนมัติที่มีความแม่นยำ ชัดเจน และตรวจสอบได้ เรารับประกันว่าข้อมูลของลูกค้าทุกคนจะได้รับการดูแลอย่างถูกต้อง 100% ไม่มีการปลอมแปลงข้อมูล ไม่มีการเปลี่ยนอีเมล และไม่มีค่าใช้จ่ายเพิ่มเติมใด ๆ ทั้งสิ้น เพราะเรามั่นใจว่าทุกคนควรได้รับโอกาสในการตามฝันอย่างโปร่งใสและเป็นธรรมที่สุด
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section" id="services" style="background-color: #ffffff;">
+    <h2>บริการของเรา</h2>
+    <div style="max-width: 900px; margin: 0 auto;">
+      <p>
+        บริการสนับสนุนการขอ <strong style="color: var(--primary-blue);">Username และ Password</strong> เพื่อเข้าร่วมโครงการ <strong style="color: var(--primary-blue);">Work and Holiday (WAH)</strong> และ <strong style="color: var(--primary-blue);">Working Holiday Scheme (WHS)</strong> เป็นบริการที่มีความสำคัญอย่างยิ่ง เนื่องจากการแข่งขันในขั้นตอนนี้มีความเข้มข้นกว่าการขอโควต้ามาก ผู้สมัครจำนวนมากต่างพยายามขอ Username และ Password พร้อมกัน จึงจำเป็นต้องใช้วิธีการเฉพาะที่มีประสิทธิภาพสูง เพื่อเพิ่มโอกาสในการได้รับสิทธิ์เข้าร่วมโครงการ
+      </p>
+      <p>
+        จากการพัฒนาและทดสอบระบบที่เราได้ทำมา พบว่าเทคนิคและโค้ดที่เราพัฒนาขึ้นนั้นสามารถดำเนินการขอ Username และ Password ได้อย่างมีประสิทธิภาพกว่าขั้นตอนการขอโควต้า ซึ่งถึงแม้ขั้นตอนการขอโควต้าจะดูง่ายกว่า แต่ด้วยสภาพการแข่งขันที่รุนแรงของขั้นตอนการขอ Username และ Password ทำให้บริการนี้ได้รับการเน้นและให้ความสำคัญมากเป็นพิเศษจากทั้งผู้ให้บริการและผู้ใช้งานเอง
+      </p>
+    </div>
+  </section>
+
+  <!-- Infographic Section -->
+  <section class="section" id="why">
+    <h2>ทำไมต้องเลือก VisaBuddy?</h2>
+    <div class="infographic-grid">
+      <div class="infographic-item">
+        <h3>โปร่งใส 100%</h3>
+        <p>ใช้ข้อมูลจริงของคุณ ไม่มีการแอบสวม</p>
+        <div class="extra-info">
+          เพื่อให้มั่นใจว่าจะไม่มีการเรียกร้องเงินเพิ่มเติมก่อนยืนยันการสมัคร และเมื่อถึงขั้นตอนการส่งข้อมูลให้ ดย จะได้ไม่เกิดปัญหาในกรณีที่ร้านค้าไม่ยอมให้หรือแอบเปลี่ยนอีเมล ซึ่งจะช่วยป้องกันปัญหาที่อาจเกิดขึ้นในอนาคต
+        </div>
+      </div>
+      <div class="infographic-item">
+        <h3>ราคาชัดเจน</h3>
+        <p>ไม่มีค่าใช้จ่ายแอบแฝง</p>
+        <div class="extra-info">
+          ราคาที่เราแจ้งคือราคาสุดท้าย ไม่มีค่าดำเนินการเพิ่มเติม 
+          คุณสามารถตรวจสอบรายละเอียดค่าใช้จ่ายทั้งหมดได้ตั้งแต่เริ่มต้นกระบวนการ
+        </div>
+      </div>
+      <div class="infographic-item">
+        <h3>ระบบปลอดภัย</h3>
+        <p>บอทแม่นยำ พร้อมซัพพอร์ตเต็มที่</p>
+        <div class="extra-info">
+          เราใช้เทคโนโลยีล่าสุดในการจองคิวอัตโนมัติ พร้อมทีมงานคอยสนับสนุนตลอด 24 ชั่วโมง 
+          เพื่อให้คุณมั่นใจว่าจะไม่พลาดโอกาสสำคัญ
+        </div>
+      </div>
+      <div class="infographic-item">
+        <h3>สิทธิ์เป็นของคุณ</h3>
+        <p>ไม่เปลี่ยนเมล ควบคุมได้เอง</p>
+        <div class="extra-info">
+          คุณจะได้ใช้บัญชีอีเมลของคุณเองตลอดกระบวนการ ไม่มีการเปลี่ยนหรือแอบใช้ข้อมูลส่วนตัว 
+          เพื่อความปลอดภัยสูงสุดและความเป็นเจ้าของที่แท้จริง
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact" style="text-align: center; background: #f5f5f7;">
+    <h2>เรายินดีให้คำแนะนำ</h2>
+    <p style="margin-bottom: 2rem;">สอบถามรายละเอียดหรือเริ่มกระบวนการสมัครรับบริการ</p>
+    <div class="button-group" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="https://line.me/R/ti/p/@166epsjo" class="cta-button line-button">
+          💬 LINE Official
+      </a>
+      <a href="https://x.com/visa_buddy" class="cta-button twitter-button">
+          🐦 Twitter/X
+      </a>
+    </div>
+  </section>
+
+  <!-- JavaScript สำหรับ reveal effect เมื่อเลื่อนหน้า -->
+  <script>
+    function reveal() {
+      const sections = document.querySelectorAll('.section');
+      const windowHeight = window.innerHeight;
+      sections.forEach(section => {
+        const elementTop = section.getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    // เรียกใช้งานครั้งแรกเมื่อโหลดหน้า
+    reveal();
+  </script>
+</body>
+</html>
