@@ -6,6 +6,7 @@
   <meta name="viewport"
         content="width=device-width,
                  initial-scale=1.0,
+                 minimum-scale=1.0,
                  maximum-scale=1.0,
                  user-scalable=no" />
   <title>VisaBuddy Tool | ปรับขนาดภาพ 200×265px พร้อมตั้งชื่อไฟล์</title>
@@ -375,17 +376,16 @@
 
     /* ป้องกัน overscroll bounce และ zoom */
     html, body {
-      overscroll-behavior: contain;
+      touch-action: pan-y;
+      overscroll-behavior-y: contain;
     }
-    
-    /* เลื่อนหน้าได้ในแนวตั้ง ไม่ไปซูมภาพ */
     #editor,
     .preview-container,
     .fixed-size-preview,
     #drop-area {
       touch-action: pan-y;
     }
-
+    
   </style>
 </head>
 <body>
@@ -606,6 +606,15 @@
         inputImage.value = '';
       });
     });
+    // ป้องกัน double-tap zoom
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', e => {
+      const now = performance.now();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, { passive: false });
   </script>
 </body>
 </html>
