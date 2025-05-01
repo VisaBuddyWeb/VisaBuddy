@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport"
+        content="width=device-width,
+                 initial-scale=1.0,
+                 maximum-scale=1.0,
+                 user-scalable=no" />
   <title>VisaBuddy Tool | ปรับขนาดภาพ 200×265px พร้อมตั้งชื่อไฟล์</title>
   <meta name="description" content="เครื่องมือปรับขนาดภาพออนไลน์เป็น 200×265 พิกเซล พร้อมตั้งชื่อไฟล์อัตโนมัติ ดาวน์โหลด .jpg ได้ทันที เหมาะกับเอกสารขอวีซ่า WAH/WHS จาก VisaBuddy" />
   <meta name="robots" content="index, follow" />
@@ -369,9 +373,16 @@
       .filename-input input { width: 100%; }
     }
 
+    /* ป้องกัน overscroll bounce และ zoom */
+    html, body {
+      overscroll-behavior: contain;
+    }
+    
+    /* เลื่อนหน้าได้ในแนวตั้ง ไม่ไปซูมภาพ */
     #editor,
     .preview-container,
-    .fixed-size-preview {
+    .fixed-size-preview,
+    #drop-area {
       touch-action: pan-y;
     }
 
