@@ -53,6 +53,7 @@
       line-height: 1.6;
     }
 
+
     /* HEADER & NAV */
     .nav-container {
       position: fixed;
@@ -367,6 +368,13 @@
       .preview-container { flex-direction: column; }
       .filename-input input { width: 100%; }
     }
+
+    #editor,
+    .preview-container,
+    .fixed-size-preview {
+      touch-action: pan-y;
+    }
+
   </style>
 </head>
 <body>
@@ -521,10 +529,26 @@
         image.style.display = 'block';
         editor.style.display = 'block';
         dropArea.style.display = 'none';
-        if (cropper) cropper.destroy();
-        cropper = new Cropper(image, { aspectRatio: 200/265, viewMode: 1, autoCropArea: 1 });
+
+        if (cropper) {
+          cropper.destroy();
+        }
+
+        cropper = new Cropper(image, {
+          aspectRatio: 200 / 265,
+          viewMode: 1,
+          autoCropArea: 1,
+          // ปิดการซูมด้วยการสัมผัสและ scroll บนมือถือ
+          zoomable: false,
+          zoomOnTouch: false,
+          zoomOnWheel: false,
+          // ปิด toggle drag mode บน double-click (มือถือจะไม่สลับโหมดโดยไม่ตั้งใจ)
+          toggleDragModeOnDblclick: false
+        });
+
         cropBtn.disabled = false;
       }
+
 
       cropBtn.addEventListener('click', () => {
         if (!cropper) return;
