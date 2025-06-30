@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisaBuddy Summary</title>
+  <meta name="description" content="สรุปภาพรวมบริการและเป้าหมายของ VisaBuddy ช่วยให้การเริ่มต้นเส้นทาง Work and Holiday (WAH/WHS) เป็นเรื่องง่ายและปลอดภัย" />
+  <meta name="keywords" content="VisaBuddy, Summary, เกี่ยวกับเรา, Work and Holiday, WAH, WHS, กด Username, บริการวีซ่า" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://visabuddyweb.github.io/VisaBuddy/summary" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:site_name" content="VisaBuddy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://visabuddyweb.github.io/VisaBuddy/summary" />
+  <meta property="og:title" content="VisaBuddy Summary – ทำความรู้จักกับเรา" />
+  <meta property="og:description" content="ทำความรู้จัก VisaBuddy และจุดมุ่งหมายของเรา เพื่อการขอวีซ่า WAH/WHS อย่างมั่นใจ" />
+  <meta property="og:image" content="https://visabuddyweb.github.io/VisaBuddy/assets/main.jpg" />
+  <meta property="og:locale" content="th_TH" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@visa_buddy" />
+  <meta name="twitter:creator" content="@visa_buddy" />
+  <meta name="twitter:title" content="VisaBuddy Summary – ทำความรู้จักกับเรา" />
+  <meta name="twitter:description" content="ทำความรู้จัก VisaBuddy และจุดมุ่งหมายของเรา เพื่อการขอวีซ่า WAH/WHS อย่างมั่นใจ" />
+  <meta name="twitter:image" content="https://visabuddyweb.github.io/VisaBuddy/assets/main.jpg" />
+  <script src="numberofregister.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      background: #fafafa;
+      color: #2c3e50;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #e1e8ed;
+    }
+
+    .counter-display {
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: #34495e;
+      margin-bottom: 10px;
+      letter-spacing: -2px;
+    }
+
+    .counter-label {
+      font-size: 1.1rem;
+      color: #7f8c8d;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .brand-name {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-tagline {
+      font-size: 1.1rem;
+      color: #7f8c8d;
+      font-weight: 400;
+    }
+
+    .content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section p {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #34495e;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, transparent 0%, #f8f9fa 50%, transparent 100%);
+      padding: 2px 4px;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+
+    .services-dropdown {
+      background: #ffffff;
+      border: 1px solid #e1e8ed;
+      border-radius: 8px;
+      margin: 30px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+    }
+
+    .services-header {
+      padding: 25px 30px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s ease;
+      user-select: none;
+    }
+
+    .services-header:hover {
+      background: #f8f9fa;
+    }
+
+    .services-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin: 0;
+    }
+
+    .dropdown-arrow {
+      font-size: 1rem;
+      color: #7f8c8d;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-arrow.active {
+      transform: rotate(180deg);
+    }
+
+    .services-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: #fafbfc;
+    }
+
+    .services-content.active {
+      max-height: 400px;
+      padding: 20px 30px 30px 30px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .service-item::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #3498db;
+      font-weight: bold;
+    }
+
+    .service-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .quote-section {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #2c3e50;
+      font-style: italic;
+      margin: 50px 0;
+      padding: 30px 0;
+      border-top: 1px solid #e1e8ed;
+      border-bottom: 1px solid #e1e8ed;
+      position: relative;
+    }
+
+    .quote-section::before,
+    .quote-section::after {
+      content: '"';
+      font-size: 3rem;
+      color: #bdc3c7;
+      font-family: Georgia, serif;
+      position: absolute;
+      top: 10px;
+    }
+
+    .quote-section::before {
+      left: 20px;
+    }
+
+    .quote-section::after {
+      right: 20px;
+    }
+
+    .final-section {
+      background: #ffffff;
+      border: 1px solid #e1e8ed;
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .final-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    .final-text {
+      color: #7f8c8d;
+      font-size: 1rem;
+    }
+
+    .share-highlight {
+      color: #3498db;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 15px;
+      }
+      
+      .counter-display {
+        font-size: 2.5rem;
+      }
+      
+      .brand-name {
+        font-size: 1.6rem;
+      }
+      
+      .quote-section {
+        font-size: 1.1rem;
+        padding: 20px 40px;
+      }
+      
+      .quote-section::before,
+      .quote-section::after {
+        font-size: 2rem;
+        top: 0;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // อ่านจำนวนผู้สมัครจากไฟล์ numberofregister.js
+      let count = getRegisterCount();
+
+      // ถ้าไม่มีข้อมูลใน localStorage ให้ใช้ตัวเลขสุ่มสำหรับ demo
+      if (count === 0) {
+        count = Math.floor(Math.random() * 500) + 100;
+      }
+      
+      const counterElement = document.getElementById("counter");
+      
+      // เอฟเฟกต์นับเลขแบบเรียบง่าย
+      let currentCount = 0;
+      const increment = Math.ceil(count / 30);
+      
+      const countUp = setInterval(() => {
+        currentCount += increment;
+        if (currentCount >= count) {
+          currentCount = count;
+          clearInterval(countUp);
+        }
+        counterElement.textContent = currentCount.toLocaleString();
+      }, 80);
+
+      // แสดงข้อมูลผู้สมัครล่าสุด (optional)
+      const latestApplicant = localStorage.getItem('latestApplicant');
+      if (latestApplicant) {
+        const applicantData = JSON.parse(latestApplicant);
+        console.log('ผู้สมัครล่าสุด:', applicantData);
+        // สามารถใช้ข้อมูลนี้แสดงผลในหน้าเว็บได้ถ้าต้องการ
+      }
+    });
+
+    function toggleServices() {
+      const content = document.getElementById('servicesContent');
+      const arrow = document.getElementById('servicesArrow');
+      
+      content.classList.toggle('active');
+      arrow.classList.toggle('active');
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div id="counter" class="counter-display">0</div>
+      <div class="counter-label">ผู้สนใจเข้าร่วมในปัจจุบัน</div>
+      <h1 class="brand-name">VisaBuddy</h1>
+      <p class="brand-tagline">เพื่อนคู่ใจตลอดเส้นทางสู่ต่างแดน</p>
+    </header>
+
+    <main class="content">
+      <section class="section">
+        <p>
+          ที่ VisaBuddy เราเข้าใจดีว่าการไปใช้ชีวิตในต่างประเทศคือ<span class="highlight">ความฝันของใครหลายคน</span> ไม่ว่าจะเพื่อเรียนรู้วัฒนธรรมใหม่ หรือเก็บเกี่ยวประสบการณ์ชีวิต แต่ความฝันนั้นอาจจะดูยากไปซักหน่อย อาจจะเพราะประสบการณ์ในการเข้าร่วมโครงการที่น้อย หรือมีคำถามมากมายที่ไม่รู้คำตอบ
+        </p>
+        
+        <p>
+          VisaBuddy จึงเกิดมาเพื่อเป็นเพื่อนคู่ใจที่ไว้ใจได้ตลอดเส้นทาง และอีกหนึ่งอย่างคือเราไม่สามารถมองดูใครซักคนที่มีความฝัน <span class="highlight">แต่ถูกทำลายลง</span> เพียงเพราะคุณเจอกับบริการที่ไม่โปร่งใส ถูกเรียกเก็บค่าธรรมเนียมเกินจริง หรือแย่ที่สุดคือข้อมูลถูกแก้ไขโดยไม่ได้รับอนุญาต
+        </p>
+
+        <p>
+          VisaBuddy เกิดขึ้นจากประสบการณ์ตรงและความตั้งใจที่จะเปลี่ยนเรื่องยากให้เป็นเรื่องง่าย เราเชื่อว่าทุกคนควรมีโอกาสไปถึงเป้าหมายโดยไม่ต้องกังวลเรื่องความปลอดภัยของข้อมูลหรือกลัวว่าจะโดนหลอกลวง
+        </p>
+      </section>
+
+      <div class="services-dropdown">
+        <div class="services-header" onclick="toggleServices()">
+          <h2 class="services-title">บริการของเรา</h2>
+          <span class="dropdown-arrow" id="servicesArrow">▼</span>
+        </div>
+        <div class="services-content" id="servicesContent">
+          <div class="service-item">ระบบทดลองใช้งานที่ช่วยให้ทุกคนสามารถทดลองสัมผัสกับระบบที่ใช้ในวันจริง</div>
+          <div class="service-item">บริการปรับขนาดรูปภาพให้เหมาะสมกับการสมัคร</div>
+          <div class="service-item">บริการช่วยสมัครและกดโควต้า Work and Holiday (WAH) และ Working Holiday Scheme (WHS)</div>
+          <div class="service-item">ข้อมูลของคุณจะถูกดูแลตามมาตรฐาน PDPA อย่างเคร่งครัด และจะถูกลบหลังดำเนินการเสร็จสิ้น</div>
+          <div class="service-item">ไม่มีการเปลี่ยนแปลงข้อมูล ไม่มีค่าใช้จ่ายแอบแฝง และไม่มีเรื่องยุ่งยาก</div>
+        </div>
+      </div>
+
+      <section class="section">
+        <p>
+          VisaBuddy อาจเป็นทีมเล็กๆ แต่เราทำงานทุกวันด้วยความมุ่งมั่น เพื่อให้คุณรู้สึกอุ่นใจและมั่นใจว่า<span class="highlight">คุณไม่ได้เดินบนเส้นทางนี้คนเดียว</span>
+        </p>
+      </section>
+
+      <div class="quote-section">
+        เพราะความฝันของคุณ ควรได้รับการดูแลด้วยความจริงใจ
+      </div>
+
+      <div class="final-section">
+        <h3 class="final-title">จุดประสงค์ของเรา</h3>
+        <p class="final-text">
+          ช่วยให้ทุกคนเริ่มต้นได้ง่ายขึ้น<br>
+          คุณสามารถสนับสนุนเราได้ง่าย ๆ ด้วยการ <span class="share-highlight">แชร์ต่อ</span>
+        </p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
