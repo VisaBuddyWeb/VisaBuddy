@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisaBuddy - รวมบริการของเรา</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="สำรวจบริการต่าง ๆ ของ VisaBuddy สำหรับการทำ Work and Holiday (WAH/WHS) พร้อมช่องทางติดต่อและข้อมูลเกี่ยวกับเรา" />
+    <meta name="keywords" content="VisaBuddy, บริการ, Work and Holiday, WAH, WHS, ช่องทางติดต่อ, ปรับขนาดภาพ, FAQ" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://visabuddyweb.github.io/VisaBuddy/main" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="VisaBuddy - รวมบริการของเรา" />
+    <meta property="og:description" content="สำรวจบริการต่าง ๆ ของ VisaBuddy สำหรับการทำ Work and Holiday (WAH/WHS) พร้อมช่องทางติดต่อและข้อมูลเกี่ยวกับเรา" />
+    <meta property="og:url" content="https://visabuddyweb.github.io/VisaBuddy/main" />
+    <meta property="og:image" content="https://visabuddyweb.github.io/VisaBuddy/assets/main.jpg" />
+    <meta property="og:locale" content="th_TH" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="VisaBuddy - รวมบริการของเรา" />
+    <meta name="twitter:description" content="สำรวจบริการต่าง ๆ ของ VisaBuddy สำหรับการทำ Work and Holiday (WAH/WHS) พร้อมช่องทางติดต่อและข้อมูลเกี่ยวกับเรา" />
+    <meta name="twitter:image" content="https://visabuddyweb.github.io/VisaBuddy/assets/main.jpg" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #141414;
+            color: white;
+        }
+        
+        .header {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0)),
+                url('../assets/main/band.png') no-repeat center center;
+            background-size: cover;
+            height: 700px;
+            position: relative; 
+            padding: 0 60px;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            color: #e50914;
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-link {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #b3b3b3;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search {
+            color: white;
+            font-size: 20px;
+        }
+        
+        .profile {
+            width: 32px;
+            height: 32px;
+            background-color: #e50914;
+            border-radius: 4px;
+        }
+        
+        .hero-content {
+            max-width: 650px;
+            margin-top: 140px;
+        }
+        
+        .hero-title {
+            font-size: 64px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .hero-text {
+            font-size: 26px;
+            margin-bottom: 30px;
+            font-weight: 400;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .hero-text.show {
+            opacity: 1;
+        }
+        
+        .btn {
+            background-color: #e50914;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #f40612;
+        }
+        
+        .btn-secondary {
+            background-color: rgba(109, 109, 110, 0.7);
+            margin-left: 10px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(109, 109, 110, 0.9);
+        }
+        
+        .row-title {
+            font-size: 26px;
+            font-weight: 500;
+            margin: 50px 0 20px 60px;
+        }
+        
+        .row {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 60px;
+            scrollbar-width: none;
+        }
+        
+        .row::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .item {
+            min-width: 280px;
+            height: 160px;
+            margin-right: 10px;
+            background-color: #2f2f2f;
+            transition: transform 0.3s;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        
+        .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Tooltip styles */
+        .item-tooltip {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .item:hover .item-tooltip {
+            opacity: 1;
+        }
+        
+        footer {
+            margin: 50px 60px;
+            color: #757575;
+            font-size: 13px;
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .footer-link {
+            color: #757575;
+            text-decoration: none;
+        }
+        
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">VisaBuddy</div>
+            <div class="nav">
+                <a href="https://visabuddyweb.github.io/VisaBuddy/main" class="nav-link">หน้าแรก</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/faq" class="nav-link">คำถามที่พบบ่อย</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#contact" class="nav-link">ช่องทางการติดต่อ</a> <!-- เพิ่มลิงก์จริงภายหลัง -->
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#about" class="nav-link">เกี่ยวกับเรา</a>     <!-- เพิ่มลิงก์จริงภายหลัง -->
+                <a href="https://visabuddyweb.github.io/VisaBuddy/" class="nav-link">หน้าหลัก</a>
+            </div>
+            <div class="header-right">
+                <div class="search">🔍</div>
+                <div class="profile"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">ABOUT US</h1>
+            <p class="hero-text" id="heroText">VisaBuddy เพื่อนคู่ใจตลอดเส้นทางวีซ่า Work and Holiday และ Working Holiday Scheme ของคุณ</p>
+            <button class="btn">▶ เล่น</button>
+            <button class="btn btn-secondary" id="infoBtn">ℹ️ ข้อมูลเพิ่มเติม</button>
+        </div>
+    </div>
+        
+    <h2 class="row-title">บริการจาก VisaBuddy</h2>
+    <div class="row">
+        <div class="item">
+            <a href="https://visabuddyweb.github.io/VisaBuddy/faq">
+                <img src="../assets/main/1.png" alt="FAQ - คำถามที่พบบ่อย">
+                <div class="item-tooltip">FAQ - คำถามที่พบบ่อย</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="https://visabuddyweb.github.io/VisaBuddy/photo">
+                <img src="../assets/main/2.png" alt="ปรับขนาดภาพ 200×265px">
+                <div class="item-tooltip">ปรับขนาดภาพ 200×265px</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="https://visabuddyweb.github.io/VisaBuddy/username"> 
+                <img src="../assets/main/3.png" alt="ทดลองกด Username">
+                <div class="item-tooltip">ทดลองกด Username</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="https://visabuddyweb.github.io/VisaBuddy/">
+                <img src="../assets/main/4.png" alt="หน้าหลัก">
+                <div class="item-tooltip">หน้าหลัก</div>
+            </a>
+        </div>
+    </div>
+
+
+    
+    <h2 class="row-title">บริการเพิ่มเติม และ ช่องทางการติดต่อ</h2>
+
+    <div class="row">
+        <div class="item">
+            <a href="https://line.me/R/ti/p/@166epsjo" target="_blank">
+                <img src="../assets/main/Line.png" alt="Line">
+                <div class="item-tooltip">Line</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="https://x.com/visa_buddy" target="_blank">
+                <img src="../assets/main/X.png" alt="X or Twitter">
+                <div class="item-tooltip">X or Twitter</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="https://visabuddyweb.github.io/VisaBuddy/" target="_blank">
+                <img src="../assets/main/assis.png" alt="บริการอื่นๆ">
+                <div class="item-tooltip">บริการอื่นๆ</div>
+            </a>
+        </div>
+    </div>
+
+    
+
+    <footer>
+        <p>คำถาม? โทร 1-800-NETFLIX</p>
+        <div class="footer-links">
+            <a href="https://visabuddyweb.github.io/VisaBuddy/faq" class="footer-link">คำถามที่พบบ่อย</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#services" class="footer-link">บริการของเรา</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/" class="footer-link">ศูนย์สื่อ</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#contact" class="footer-link">วิธีการรับบริการ</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#why" class="footer-link">ทำไมต้องเป็น VisaBuddy</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#about" class="footer-link">ความเป็นส่วนตัว</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#about" class="footer-link">ข้อมูลบริษัท</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#contact" class="footer-link">ติดต่อเรา</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/summary" class="footer-link">จำนวนผู้สนใจสมัครในปีนี้</a>
+        </div>
+        <p>© 2025 Netflix, Inc.</p>
+    </footer>
+
+    <script>
+        // Simple JavaScript to enhance interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.item');
+            const heroText = document.getElementById('heroText');
+            const infoBtn = document.getElementById('infoBtn');
+            let textShown = false;
+            
+            // Show hero text after 3 seconds
+            setTimeout(function() {
+                if (!textShown) {
+                    heroText.classList.add('show');
+                    textShown = true;
+                }
+            }, 3000);
+            
+            // Show hero text immediately when info button is clicked
+            infoBtn.addEventListener('click', function() {
+                if (!textShown) {
+                    heroText.classList.add('show');
+                    textShown = true;
+                }
+            });
+            
+            items.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.zIndex = '10';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1.0)';
+                    this.style.zIndex = '1';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
