@@ -4,7 +4,7 @@
   <!-- Primary Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VisaBuddy – กด Username & Password WAH/WHS โปร่งใส เร็ว ปลอดภัย</title>
+  <title>VisaBuddy – กด Username & Password WAH/WHS</title>
   <meta name="description" content="VisaBuddy ช่วยกด Username & Password โครงการ Work and Holiday (WAH) และ Working Holiday Scheme (WHS) ด้วยระบบอัตโนมัติ แม่นยำ โปร่งใส ตาม PDPA เริ่มต้น Working Holiday อย่างมั่นใจ" />
   <meta name="keywords" content="VisaBuddy, Work and Holiday, WAH, WHS, กด Username, กดโควต้า, Automation, วีซ่าทำงานและท่องเที่ยว" />
   <meta name="robots" content="index, follow" />
@@ -149,17 +149,32 @@
     .nav-links {
       display: flex;
       gap: 2rem;
+      align-items: center;
     }
     .nav-links a {
       color: #1d1d1f;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
       padding: 0.5rem 0;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-blue);
+      transition: width 0.3s ease;
     }
     .nav-links a:hover,
     .nav-links a:focus {
       color: var(--primary-blue);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     /* Mobile Nav */
