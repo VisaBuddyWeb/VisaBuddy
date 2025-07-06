@@ -32,7 +32,11 @@
         html{scroll-behavior:smooth}
 
         /* ----- HEADER ----- */
-        .header{background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,0)),url('assets/main/band.png') no-repeat center/cover;height:700px;padding:0 60px;position:relative}
+        .header{
+            background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,0)),url('assets/main/band.png') no-repeat center/cover;
+            height:700px;padding:0 60px;position:relative;
+            min-height:400px;
+        }
         .header-top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
         .logo{color:#e50914;font-size:36px;font-weight:700;text-transform:uppercase}
 
@@ -51,6 +55,16 @@
         .profile{
             width:32px;height:32px;border-radius:4px;
             background:url('VisaBuddy_Logo.png') center/contain no-repeat;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle{
+            display:none;
+            background:none;
+            border:none;
+            color:#fff;
+            font-size:24px;
+            cursor:pointer;
         }
 
         /* ----- HERO ----- */
@@ -80,7 +94,7 @@
             background:rgba(0,0,0,.9);padding:8px 16px;border-radius:4px;
             font-size:14px;font-weight:500;white-space:nowrap;
             opacity:0;transition:opacity .3s;pointer-events:none;
-            color:#fff !important;                   /* — สีขาวตามที่ต้องการ — */
+            color:#fff !important;
         }
         .item:hover .item-tooltip{opacity:1}
 
@@ -89,6 +103,168 @@
         .footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:30px 0}
         .footer-link{color:#757575;text-decoration:none}
         .footer-link:hover{text-decoration:underline}
+
+        /* ======= MOBILE RESPONSIVE ======= */
+        @media (max-width: 768px) {
+            /* Header adjustments */
+            .header{
+                padding:0 20px;
+                height:500px;
+            }
+            
+            .header-top{
+                flex-wrap:wrap;
+                gap:10px;
+            }
+            
+            .logo{
+                font-size:24px;
+            }
+            
+            /* Hide navigation menu on mobile, show toggle button */
+            .nav{
+                display:none;
+                position:absolute;
+                top:100%;
+                left:0;
+                right:0;
+                background:rgba(0,0,0,0.95);
+                flex-direction:column;
+                padding:20px;
+                gap:15px;
+                z-index:100;
+            }
+            
+            .nav.active{
+                display:flex;
+            }
+            
+            .mobile-menu-toggle{
+                display:block;
+            }
+            
+            .nav-link{
+                font-size:16px;
+                padding:10px 0;
+                border-bottom:1px solid rgba(255,255,255,0.1);
+            }
+            
+            /* Hero section */
+            .hero-content{
+                margin-top:80px;
+                text-align:center;
+            }
+            
+            .hero-title{
+                font-size:36px;
+                line-height:1.2;
+            }
+            
+            .hero-text{
+                font-size:18px;
+                padding:0 10px;
+            }
+            
+            /* Buttons */
+            .btn{
+                font-size:16px;
+                padding:10px 20px;
+                margin:5px;
+                display:inline-block;
+            }
+            
+            .btn-secondary{
+                margin-left:0;
+            }
+            
+            /* Rows and items */
+            .row-title{
+                font-size:22px;
+                margin:30px 0 15px 20px;
+            }
+            
+            .row{
+                padding:10px 20px;
+            }
+            
+            .item{
+                min-width:220px;
+                height:140px;
+                margin-right:15px;
+            }
+            
+            .item-tooltip{
+                font-size:12px;
+                padding:6px 12px;
+            }
+            
+            /* Footer */
+            footer{
+                margin:30px 20px;
+            }
+            
+            .footer-links{
+                grid-template-columns:repeat(2,1fr);
+                gap:10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            .header{
+                height:400px;
+                padding:0 15px;
+            }
+            
+            .hero-title{
+                font-size:28px;
+            }
+            
+            .hero-text{
+                font-size:16px;
+            }
+            
+            .btn{
+                font-size:14px;
+                padding:8px 16px;
+                width:100%;
+                max-width:200px;
+            }
+            
+            .row-title{
+                font-size:20px;
+                margin:20px 0 10px 15px;
+            }
+            
+            .row{
+                padding:10px 15px;
+            }
+            
+            .item{
+                min-width:180px;
+                height:120px;
+            }
+            
+            .footer-links{
+                grid-template-columns:1fr;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) {
+            .item:active{
+                transform:scale(1.05);
+            }
+            
+            .item-tooltip{
+                opacity:1;
+                position:static;
+                transform:none;
+                background:rgba(0,0,0,0.8);
+                text-align:center;
+                padding:5px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -97,7 +273,10 @@
         <div class="header-top">
             <div class="logo">VisaBuddy</div>
 
-            <div class="nav">
+            <!-- Mobile menu toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="เปิดเมนู">☰</button>
+
+            <div class="nav" id="navigationMenu">
                 <a href="https://visabuddyweb.github.io/VisaBuddy/main.html" class="nav-link">หน้าแรก</a>
                 <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html"   class="nav-link">คำถามที่พบบ่อย</a>
                 <a href="https://visabuddyweb.github.io/VisaBuddy/#contact"   class="nav-link">ช่องทางการติดต่อ</a>
@@ -203,10 +382,36 @@
         document.addEventListener('DOMContentLoaded', () => {
             const heroText = document.getElementById('heroText');
             const infoBtn  = document.getElementById('infoBtn');
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navigationMenu = document.getElementById('navigationMenu');
 
+            // Hero text animation
             setTimeout(() => heroText.classList.add('show'), 3000);
             infoBtn.addEventListener('click', () => heroText.classList.add('show'));
 
+            // Mobile menu toggle
+            mobileMenuToggle.addEventListener('click', () => {
+                navigationMenu.classList.toggle('active');
+                mobileMenuToggle.textContent = navigationMenu.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navigationMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navigationMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    navigationMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                }
+            });
+
+            // Item hover effects
             document.querySelectorAll('.item').forEach(item => {
                 item.addEventListener('mouseenter', () => { item.style.zIndex = '10'; });
                 item.addEventListener('mouseleave', () => { item.style.zIndex = '1';  });
