@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VisaBuddy - รวมบริการของเรา</title>
+
+    <!-- ─── META ──────────────────────────────────────────────────────────── -->
+    <meta name="description" content="สำรวจบริการต่าง ๆ ของ VisaBuddy สำหรับการทำ Work and Holiday (WAH/WHS) พร้อมช่องทางติดต่อและข้อมูลเกี่ยวกับเรา" />
+    <meta name="keywords"    content="VisaBuddy, บริการ, Work and Holiday, WAH, WHS, ช่องทางติดต่อ, ปรับขนาดภาพ, FAQ" />
+    <meta name="robots"      content="index, follow" />
+    <link rel="canonical"    href="https://visabuddyweb.github.io/VisaBuddy/main.html" />
+    <link rel="icon" href="https://visabuddyweb.github.io/VisaBuddy/favicon.ico" sizes="32x32" />
+
+    <!-- Open Graph -->
+    <meta property="og:title"       content="VisaBuddy - รวมบริการของเรา" />
+    <meta property="og:description" content="สำรวจบริการต่าง ๆ ของ VisaBuddy สำหรับการทำ Work and Holiday (WAH/WHS) พร้อมช่องทางติดต่อและข้อมูลเกี่ยวกับเรา" />
+    <meta property="og:url"         content="https://visabuddyweb.github.io/VisaBuddy/main.html" />
+    <meta property="og:image"       content="https://visabuddyweb.github.io/VisaBuddy/assets/main.jpg" />
+    <meta property="og:locale"      content="th_TH" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="VisaBuddy - รวมบริการของเรา" />
+    <meta name="twitter:description" content="สำรวจบริการต่าง ๆ ของ VisaBuddy สำหรับการทำ Work and Holiday (WAH/WHS) พร้อมช่องทางติดต่อและข้อมูลเกี่ยวกับเรา" />
+    <meta name="twitter:image"       content="https://visabuddyweb.github.io/VisaBuddy/assets/main.jpg" />
+
+    <!-- ─── STYLE ─────────────────────────────────────────────────────────── -->
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
+        body{background:#141414;color:#fff}
+        html{scroll-behavior:smooth}
+
+        /* ----- HEADER ----- */
+        .header{
+            background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,0)),url('assets/main/band.jpg') no-repeat center/cover;
+            height:700px;padding:0 60px;position:relative;
+            min-height:400px;
+        }
+        .header-top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+        .logo{color:#e50914;font-size:36px;font-weight:700;text-transform:uppercase}
+
+        .nav{display:flex;gap:20px}
+        .nav-link{color:#e5e5e5;font-size:14px;text-decoration:none;transition:color .3s}
+        .nav-link:hover{color:#b3b3b3}
+
+        .header-right{display:flex;align-items:center;gap:20px}
+
+        /* --- buttons (search / profile) --- */
+        .search,.profile{border:none;background:none;cursor:pointer;padding:0}
+
+        .search {
+            width: 24px;
+            height: 24px;
+            background: url('assets/icons/search.png') center/contain no-repeat;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+
+        /* ใช้โลโก้ใหม่ + รองรับภาพโปร่งใส */
+        .profile {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background: url('assets/icons/page_main.png') center/contain no-repeat;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle{
+            display:none;
+            background:none;
+            border:none;
+            color:#fff;
+            font-size:24px;
+            cursor:pointer;
+        }
+
+        /* ----- HERO ----- */
+        .hero-content{max-width:650px;margin-top:140px}
+        .hero-title{font-size:64px;margin-bottom:20px;font-weight:700}
+        .hero-text{font-size:26px;margin-bottom:30px;font-weight:400;opacity:0;transition:opacity 1s}
+        .hero-text.show{opacity:1}
+
+        /* ----- BUTTONS ----- */
+        .btn{background:#e50914;color:#fff;padding:12px 24px;border:none;border-radius:4px;font-size:18px;font-weight:700;cursor:pointer;transition:background .3s}
+        .btn:hover{background:#f40612}
+
+        .btn-secondary{background:rgba(109,109,110,.7);margin-left:10px}
+        .btn-secondary:hover{background:rgba(109,109,110,.9)}
+
+        /* ----- ROWS & ITEMS ----- */
+        .row-title{font-size:26px;font-weight:500;margin:50px 0 20px 60px}
+        .row{display:flex;overflow-x:auto;padding:10px 60px;scrollbar-width:none}
+        .row::-webkit-scrollbar{display:none}
+
+        .item{min-width:280px;height:160px;margin-right:10px;background:#2f2f2f;border-radius:4px;overflow:hidden;position:relative;transition:transform .3s}
+        .item:hover{transform:scale(1.05);z-index:10}
+        .item img{width:100%;height:100%;object-fit:cover}
+
+        .item-tooltip{
+            position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+            background:rgba(0,0,0,.9);padding:8px 16px;border-radius:4px;
+            font-size:14px;font-weight:500;white-space:nowrap;
+            opacity:0;transition:opacity .3s;pointer-events:none;
+            color:#fff !important;
+        }
+        .item:hover .item-tooltip{opacity:1}
+
+        /* ----- FOOTER ----- */
+        footer{margin:50px 60px;color:#757575;font-size:13px}
+        .footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:30px 0}
+        .footer-link{color:#757575;text-decoration:none}
+        .footer-link:hover{text-decoration:underline}
+
+        /* ======= MOBILE RESPONSIVE ======= */
+        @media (max-width: 768px) {
+            /* Header adjustments */
+            .header{
+                padding:0 20px;
+                height:500px;
+            }
+            
+            .header-top{
+                flex-wrap:wrap;
+                gap:10px;
+            }
+            
+            .logo{
+                font-size:24px;
+            }
+            
+            /* Hide navigation menu on mobile, show toggle button */
+            .nav{
+                display:none;
+                position:absolute;
+                top:100%;
+                left:0;
+                right:0;
+                background:rgba(0,0,0,0.95);
+                flex-direction:column;
+                padding:20px;
+                gap:15px;
+                z-index:100;
+            }
+            
+            .nav.active{
+                display:flex;
+            }
+            
+            .mobile-menu-toggle{
+                display:block;
+            }
+            
+            .nav-link{
+                font-size:16px;
+                padding:10px 0;
+                border-bottom:1px solid rgba(255,255,255,0.1);
+            }
+            
+            /* Hero section */
+            .hero-content{
+                margin-top:80px;
+                text-align:center;
+            }
+            
+            .hero-title{
+                font-size:36px;
+                line-height:1.2;
+            }
+            
+            .hero-text{
+                font-size:18px;
+                padding:0 10px;
+            }
+            
+            /* Buttons */
+            .btn{
+                font-size:16px;
+                padding:10px 20px;
+                margin:5px;
+                display:inline-block;
+            }
+            
+            .btn-secondary{
+                margin-left:0;
+            }
+            
+            /* Rows and items */
+            .row-title{
+                font-size:22px;
+                margin:30px 0 15px 20px;
+            }
+            
+            .row{
+                padding:10px 20px;
+            }
+            
+            .item{
+                min-width:220px;
+                height:140px;
+                margin-right:15px;
+            }
+            
+            .item-tooltip{
+                font-size:12px;
+                padding:6px 12px;
+            }
+            
+            /* Footer */
+            footer{
+                margin:30px 20px;
+            }
+            
+            .footer-links{
+                grid-template-columns:repeat(2,1fr);
+                gap:10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            .header{
+                height:400px;
+                padding:0 15px;
+            }
+            
+            .hero-title{
+                font-size:28px;
+            }
+            
+            .hero-text{
+                font-size:16px;
+            }
+            
+            .btn{
+                font-size:14px;
+                padding:8px 16px;
+                width:100%;
+                max-width:200px;
+            }
+            
+            .row-title{
+                font-size:20px;
+                margin:20px 0 10px 15px;
+            }
+            
+            .row{
+                padding:10px 15px;
+            }
+            
+            .item{
+                min-width:180px;
+                height:120px;
+            }
+            
+            .footer-links{
+                grid-template-columns:1fr;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) {
+            .item:active{
+                transform:scale(1.05);
+            }
+            
+            .item-tooltip{
+                opacity:1;
+                position:static;
+                transform:none;
+                background:rgba(0,0,0,0.8);
+                text-align:center;
+                padding:5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ─── HEADER ────────────────────────────────────────────────────────── -->
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">VisaBuddy</div>
+
+            <!-- Mobile menu toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="เปิดเมนู">☰</button>
+
+            <div class="nav" id="navigationMenu">
+                <a href="https://visabuddyweb.github.io/VisaBuddy/main.html" class="nav-link">หน้าแรก</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html"   class="nav-link">คำถามที่พบบ่อย</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#contact"   class="nav-link">ช่องทางการติดต่อ</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#about"     class="nav-link">เกี่ยวกับเรา</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/"            class="nav-link">หน้าหลัก</a>
+            </div>
+
+            <div class="header-right">
+                <!-- ค้นหา -->
+                <button class="search" type="button" aria-label="ค้นหา"
+                        onclick="window.location.href='search.html';"></button>
+
+                <!-- โปรไฟล์ -->
+                <button class="profile" type="button" aria-label="ไปหน้าหลัก VisaBuddy"
+                        onclick="window.location.href='https://visabuddyweb.github.io/VisaBuddy/';"></button>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">ABOUT US</h1>
+            <p class="hero-text" id="heroText">
+                VisaBuddy เพื่อนคู่ใจตลอดเส้นทางวีซ่า Work and Holiday และ Working Holiday Scheme ของคุณ
+            </p>
+            <!-- ปุ่มแดง -->
+            <button class="btn" type="button" onclick="window.location.href='#services';">▶ บริการ</button>
+            <button class="btn btn-secondary" id="infoBtn" type="button">ℹ️ ข้อมูลเพิ่มเติม</button>
+        </div>
+    </div>
+
+    <!-- ─── SERVICES ──────────────────────────────────────────────────────── -->
+    <section id="services">
+        <h2 class="row-title">บริการจาก VisaBuddy</h2>
+        <div class="row">
+            <div class="item">
+                <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html">
+                    <img src="assets/main/1.png" alt="FAQ - คำถามที่พบบ่อย" />
+                    <div class="item-tooltip">FAQ - คำถามที่พบบ่อย</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="https://visabuddyweb.github.io/VisaBuddy/photo.html">
+                    <img src="assets/main/2.png" alt="ปรับขนาดภาพ 200×265px" />
+                    <div class="item-tooltip">ปรับขนาดภาพ 200×265px</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="https://visabuddyweb.github.io/VisaBuddy/username">
+                    <img src="assets/main/3.png" alt="ทดลองกด Username" />
+                    <div class="item-tooltip">ทดลองกด Username</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="https://visabuddyweb.github.io/VisaBuddy/">
+                    <img src="assets/main/4.png" alt="หน้าหลัก" />
+                    <div class="item-tooltip">หน้าหลัก</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CONTACT / EXTRA ──────────────────────────────────────────────── -->
+    <h2 class="row-title">บริการเพิ่มเติม และ ช่องทางการติดต่อ</h2>
+    <div class="row">
+        <div class="item">
+            <a href="https://line.me/R/ti/p/@166epsjo" target="_blank">
+                <img src="assets/main/Line.png" alt="Line" />
+                <div class="item-tooltip">Line</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="https://x.com/visa_buddy" target="_blank">
+                <img src="assets/main/X.png" alt="X or Twitter" />
+                <div class="item-tooltip">X or Twitter</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="https://visabuddyweb.github.io/VisaBuddy/" target="_blank">
+                <img src="assets/main/assis.png" alt="บริการอื่นๆ" />
+                <div class="item-tooltip">บริการอื่นๆ</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ─── FOOTER ───────────────────────────────────────────────────────── -->
+    <footer>
+        <p>.</p>
+        <div class="footer-links">
+            <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html" class="footer-link">คำถามที่พบบ่อย</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#services"   class="footer-link">บริการของเรา</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/"            class="footer-link">ศูนย์สื่อ</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#contact"    class="footer-link">วิธีการรับบริการ</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#why"        class="footer-link">ทำไมต้องเป็น VisaBuddy</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#about"      class="footer-link">ความเป็นส่วนตัว</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#about"      class="footer-link">ข้อมูลบริษัท</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/#contact"    class="footer-link">ติดต่อเรา</a>
+            <a href="https://visabuddyweb.github.io/VisaBuddy/summary"     class="footer-link">จำนวนผู้สนใจสมัครในปีนี้</a>
+        </div>
+        <p>© 2025 VisaBuddy. All rights reserved.</p>
+    </footer>
+
+    <!-- ─── SCRIPT ───────────────────────────────────────────────────────── -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroText = document.getElementById('heroText');
+            const infoBtn  = document.getElementById('infoBtn');
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navigationMenu = document.getElementById('navigationMenu');
+
+            // Hero text animation
+            setTimeout(() => heroText.classList.add('show'), 3000);
+            infoBtn.addEventListener('click', () => heroText.classList.add('show'));
+
+            // Mobile menu toggle
+            mobileMenuToggle.addEventListener('click', () => {
+                navigationMenu.classList.toggle('active');
+                mobileMenuToggle.textContent = navigationMenu.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navigationMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navigationMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    navigationMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                }
+            });
+
+            // Item hover effects
+            document.querySelectorAll('.item').forEach(item => {
+                item.addEventListener('mouseenter', () => { item.style.zIndex = '10'; });
+                item.addEventListener('mouseleave', () => { item.style.zIndex = '1';  });
+            });
+        });
+    </script>
+</body>
+</html>
