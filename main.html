@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,8 +28,21 @@
     <!-- ─── STYLE ─────────────────────────────────────────────────────────── -->
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
-        body{background:#141414;color:#fff}
+        body{background:#141414;color:#fff;line-height:1.6}
         html{scroll-behavior:smooth}
+
+        /* ----- SKIP LINK (Accessibility) ----- */
+        .skip-link{
+            position:absolute;
+            top:-40px;
+            left:0;
+            background:#e50914;
+            color:#fff;
+            padding:8px;
+            text-decoration:none;
+            z-index:100;
+        }
+        .skip-link:focus{top:0}
 
         /* ----- HEADER ----- */
         .header{
@@ -40,35 +53,53 @@
         .header-top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
         .logo{color:#e50914;font-size:36px;font-weight:700;text-transform:uppercase}
 
-        .nav{display:flex;gap:20px}
-        .nav-link{color:#e5e5e5;font-size:14px;text-decoration:none;transition:color .3s}
-        .nav-link:hover{color:#b3b3b3}
+        .nav{display:flex;gap:20px;transition:all 0.3s ease}
+        .nav-link{
+            color:#e5e5e5;
+            font-size:14px;
+            text-decoration:none;
+            transition:color .3s;
+            padding:8px 12px;
+            border-radius:4px;
+        }
+        .nav-link:hover{color:#fff;background:rgba(255,255,255,0.1)}
+        .nav-link:focus{
+            outline:2px solid #e50914;
+            outline-offset:2px;
+        }
 
         .header-right{display:flex;align-items:center;gap:20px}
 
         /* --- buttons (search / profile) --- */
-        .search,.profile{border:none;background:none;cursor:pointer;padding:0}
+        .search,.profile{
+            border:none;
+            background:none;
+            cursor:pointer;
+            padding:8px;
+            border-radius:4px;
+            transition:all 0.3s ease;
+        }
+        .search:hover,.profile:hover{
+            background:rgba(255,255,255,0.1);
+            transform:scale(1.1);
+        }
+        .search:focus,.profile:focus{
+            outline:2px solid #e50914;
+            outline-offset:2px;
+        }
 
         .search {
             width: 24px;
             height: 24px;
             background: url('assets/icons/search.png') center/contain no-repeat;
-            border: none;
-            cursor: pointer;
-            padding: 0;
         }
 
-
-        /* ใช้โลโก้ใหม่ + รองรับภาพโปร่งใส */
         .profile {
             width: 32px;
             height: 32px;
             border-radius: 4px;
             background: url('assets/icons/page_main.png') center/contain no-repeat;
             background-color: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
         }
 
         /* Mobile Menu Toggle */
@@ -79,48 +110,220 @@
             color:#fff;
             font-size:24px;
             cursor:pointer;
+            padding:8px;
+            border-radius:4px;
+            transition:all 0.3s ease;
+        }
+        .mobile-menu-toggle:hover{
+            background:rgba(255,255,255,0.1);
         }
 
         /* ----- HERO ----- */
         .hero-content{max-width:650px;margin-top:140px}
-        .hero-title{font-size:64px;margin-bottom:20px;font-weight:700}
-        .hero-text{font-size:26px;margin-bottom:30px;font-weight:400;opacity:0;transition:opacity 1s}
-        .hero-text.show{opacity:1}
+        .hero-title{font-size:64px;margin-bottom:20px;font-weight:700;line-height:1.1}
+        .hero-text{
+            font-size:26px;
+            margin-bottom:30px;
+            font-weight:400;
+            opacity:0;
+            transform:translateY(20px);
+            transition:opacity 1s ease, transform 1s ease;
+        }
+        .hero-text.show{opacity:1;transform:translateY(0)}
 
         /* ----- BUTTONS ----- */
-        .btn{background:#e50914;color:#fff;padding:12px 24px;border:none;border-radius:4px;font-size:18px;font-weight:700;cursor:pointer;transition:background .3s}
-        .btn:hover{background:#f40612}
+        .btn{
+            background:#e50914;
+            color:#fff;
+            padding:12px 24px;
+            border:none;
+            border-radius:4px;
+            font-size:18px;
+            font-weight:700;
+            cursor:pointer;
+            transition:all 0.3s ease;
+        }
+        .btn:hover{
+            background:#f40612;
+            transform:translateY(-2px);
+            box-shadow:0 4px 8px rgba(229,9,20,0.4);
+        }
+        .btn:focus{
+            outline:2px solid #fff;
+            outline-offset:2px;
+        }
 
-        .btn-secondary{background:rgba(109,109,110,.7);margin-left:10px}
-        .btn-secondary:hover{background:rgba(109,109,110,.9)}
+        .btn-secondary{
+            background:rgba(109,109,110,.7);
+            margin-left:10px;
+        }
+        .btn-secondary:hover{
+            background:rgba(109,109,110,.9);
+            box-shadow:0 4px 8px rgba(109,109,110,0.4);
+        }
 
         /* ----- ROWS & ITEMS ----- */
         .row-title{font-size:26px;font-weight:500;margin:50px 0 20px 60px}
-        .row{display:flex;overflow-x:auto;padding:10px 60px;scrollbar-width:none}
-        .row::-webkit-scrollbar{display:none}
+        .row{display:flex;overflow-x:auto;padding:10px 60px;scrollbar-width:thin;scrollbar-color:#e50914 #2f2f2f}
+        .row::-webkit-scrollbar{height:8px}
+        .row::-webkit-scrollbar-track{background:#2f2f2f}
+        .row::-webkit-scrollbar-thumb{background:#e50914;border-radius:4px}
 
-        .item{min-width:280px;height:160px;margin-right:10px;background:#2f2f2f;border-radius:4px;overflow:hidden;position:relative;transition:transform .3s}
-        .item:hover{transform:scale(1.05);z-index:10}
-        .item img{width:100%;height:100%;object-fit:cover}
+        .item{
+            min-width:280px;
+            height:160px;
+            margin-right:10px;
+            background:#2f2f2f;
+            border-radius:4px;
+            overflow:hidden;
+            position:relative;
+            transition:transform .3s ease, box-shadow .3s ease;
+        }
+        .item:hover{
+            transform:scale(1.05);
+            z-index:10;
+            box-shadow:0 8px 16px rgba(0,0,0,0.6);
+        }
+        .item:focus-within{
+            outline:2px solid #e50914;
+            outline-offset:2px;
+        }
+        .item a{
+            display:block;
+            width:100%;
+            height:100%;
+            text-decoration:none;
+        }
+        .item img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            transition:opacity 0.3s ease;
+        }
+        .item img.loading{
+            opacity:0.5;
+        }
 
         .item-tooltip{
-            position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
-            background:rgba(0,0,0,.9);padding:8px 16px;border-radius:4px;
-            font-size:14px;font-weight:500;white-space:nowrap;
-            opacity:0;transition:opacity .3s;pointer-events:none;
+            position:absolute;
+            bottom:10px;
+            left:50%;
+            transform:translateX(-50%);
+            background:rgba(0,0,0,.95);
+            padding:8px 16px;
+            border-radius:4px;
+            font-size:14px;
+            font-weight:500;
+            white-space:nowrap;
+            opacity:0;
+            transition:opacity .3s ease;
+            pointer-events:none;
             color:#fff !important;
+            box-shadow:0 2px 8px rgba(0,0,0,0.4);
         }
         .item:hover .item-tooltip{opacity:1}
 
+        /* ----- LOADING STATE ----- */
+        .loading-placeholder{
+            background:linear-gradient(90deg,#2f2f2f 25%,#3f3f3f 50%,#2f2f2f 75%);
+            background-size:200% 100%;
+            animation:loading 1.5s infinite;
+        }
+        @keyframes loading{
+            0%{background-position:200% 0}
+            100%{background-position:-200% 0}
+        }
+
         /* ----- FOOTER ----- */
         footer{margin:50px 60px;color:#757575;font-size:13px}
-        .footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:30px 0}
-        .footer-link{color:#757575;text-decoration:none}
-        .footer-link:hover{text-decoration:underline}
+        .footer-section{margin-bottom:30px}
+        .footer-section-title{
+            color:#fff;
+            font-size:16px;
+            font-weight:600;
+            margin-bottom:15px;
+        }
+        .footer-links{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:15px;
+            margin:30px 0;
+        }
+        .footer-link{
+            color:#757575;
+            text-decoration:none;
+            transition:color 0.3s ease;
+        }
+        .footer-link:hover{
+            color:#fff;
+            text-decoration:underline;
+        }
+        .footer-link:focus{
+            outline:2px solid #e50914;
+            outline-offset:2px;
+            color:#fff;
+        }
+
+        /* ----- INFO MODAL ----- */
+        .modal{
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.8);
+            z-index:1000;
+            align-items:center;
+            justify-content:center;
+            opacity:0;
+            transition:opacity 0.3s ease;
+        }
+        .modal.show{
+            display:flex;
+            opacity:1;
+        }
+        .modal-content{
+            background:#181818;
+            padding:40px;
+            border-radius:8px;
+            max-width:600px;
+            width:90%;
+            position:relative;
+            transform:scale(0.8);
+            transition:transform 0.3s ease;
+        }
+        .modal.show .modal-content{
+            transform:scale(1);
+        }
+        .modal-close{
+            position:absolute;
+            top:10px;
+            right:10px;
+            background:none;
+            border:none;
+            color:#fff;
+            font-size:30px;
+            cursor:pointer;
+            padding:5px 10px;
+            border-radius:4px;
+            transition:background 0.3s ease;
+        }
+        .modal-close:hover{
+            background:rgba(255,255,255,0.1);
+        }
+        .modal h2{
+            color:#e50914;
+            margin-bottom:20px;
+        }
+        .modal p{
+            line-height:1.8;
+            color:#e5e5e5;
+            margin-bottom:15px;
+        }
 
         /* ======= MOBILE RESPONSIVE ======= */
         @media (max-width: 768px) {
-            /* Header adjustments */
             .header{
                 padding:0 20px;
                 height:500px;
@@ -135,18 +338,18 @@
                 font-size:24px;
             }
             
-            /* Hide navigation menu on mobile, show toggle button */
             .nav{
                 display:none;
                 position:absolute;
                 top:100%;
                 left:0;
                 right:0;
-                background:rgba(0,0,0,0.95);
+                background:rgba(0,0,0,0.98);
                 flex-direction:column;
                 padding:20px;
-                gap:15px;
+                gap:5px;
                 z-index:100;
+                box-shadow:0 4px 12px rgba(0,0,0,0.5);
             }
             
             .nav.active{
@@ -159,18 +362,17 @@
             
             .nav-link{
                 font-size:16px;
-                padding:10px 0;
+                padding:12px;
                 border-bottom:1px solid rgba(255,255,255,0.1);
             }
             
-            /* Hero section */
             .hero-content{
-                margin-top:80px;
+                margin-top:60px;
                 text-align:center;
             }
             
             .hero-title{
-                font-size:36px;
+                font-size:32px;
                 line-height:1.2;
             }
             
@@ -179,7 +381,6 @@
                 padding:0 10px;
             }
             
-            /* Buttons */
             .btn{
                 font-size:16px;
                 padding:10px 20px;
@@ -191,7 +392,6 @@
                 margin-left:0;
             }
             
-            /* Rows and items */
             .row-title{
                 font-size:22px;
                 margin:30px 0 15px 20px;
@@ -212,7 +412,6 @@
                 padding:6px 12px;
             }
             
-            /* Footer */
             footer{
                 margin:30px 20px;
             }
@@ -221,10 +420,13 @@
                 grid-template-columns:repeat(2,1fr);
                 gap:10px;
             }
+
+            .modal-content{
+                padding:30px 20px;
+            }
         }
 
         @media (max-width: 480px) {
-            /* Extra small screens */
             .header{
                 height:400px;
                 padding:0 15px;
@@ -270,40 +472,34 @@
                 transform:scale(1.05);
             }
             
-            .item-tooltip{
-                opacity:1;
-                position:static;
-                transform:none;
-                background:rgba(0,0,0,0.8);
-                text-align:center;
-                padding:5px;
+            .nav-link:active,.btn:active{
+                transform:scale(0.95);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">ข้ามไปยังเนื้อหาหลัก</a>
+
     <!-- ─── HEADER ────────────────────────────────────────────────────────── -->
-    <div class="header">
+    <header class="header">
         <div class="header-top">
             <div class="logo">VisaBuddy</div>
 
-            <!-- Mobile menu toggle -->
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="เปิดเมนู">☰</button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="เปิดเมนู" aria-expanded="false">☰</button>
 
-            <div class="nav" id="navigationMenu">
+            <nav class="nav" id="navigationMenu" aria-label="เมนูหลัก">
                 <a href="https://visabuddyweb.github.io/VisaBuddy/main.html" class="nav-link">หน้าแรก</a>
-                <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html"   class="nav-link">คำถามที่พบบ่อย</a>
-                <a href="https://visabuddyweb.github.io/VisaBuddy/#contact"   class="nav-link">ช่องทางการติดต่อ</a>
-                <a href="https://visabuddyweb.github.io/VisaBuddy/#about"     class="nav-link">เกี่ยวกับเรา</a>
-                <a href="https://visabuddyweb.github.io/VisaBuddy/"            class="nav-link">หน้าหลัก</a>
-            </div>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html" class="nav-link">คำถามที่พบบ่อย</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#contact" class="nav-link">ช่องทางการติดต่อ</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#about" class="nav-link">เกี่ยวกับเรา</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/" class="nav-link">หน้าหลัก</a>
+            </nav>
 
             <div class="header-right">
-                <!-- ค้นหา -->
                 <button class="search" type="button" aria-label="ค้นหา"
                         onclick="window.location.href='search.html';"></button>
-
-                <!-- โปรไฟล์ -->
                 <button class="profile" type="button" aria-label="ไปหน้าหลัก VisaBuddy"
                         onclick="window.location.href='https://visabuddyweb.github.io/VisaBuddy/';"></button>
             </div>
@@ -314,79 +510,96 @@
             <p class="hero-text" id="heroText">
                 VisaBuddy เพื่อนคู่ใจตลอดเส้นทางวีซ่า Work and Holiday และ Working Holiday Scheme ของคุณ
             </p>
-            <!-- ปุ่มแดง -->
-            <button class="btn" type="button" onclick="window.location.href='#services';">▶ บริการ</button>
+            <button class="btn" type="button" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'});">▶ บริการ</button>
             <button class="btn btn-secondary" id="infoBtn" type="button">ℹ️ ข้อมูลเพิ่มเติม</button>
         </div>
-    </div>
+    </header>
 
-    <!-- ─── SERVICES ──────────────────────────────────────────────────────── -->
-    <section id="services">
-        <h2 class="row-title">บริการจาก VisaBuddy</h2>
-        <div class="row">
-            <div class="item">
-                <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html">
-                    <img src="assets/main/1.png" alt="FAQ - คำถามที่พบบ่อย" />
-                    <div class="item-tooltip">FAQ - คำถามที่พบบ่อย</div>
-                </a>
+    <!-- ─── MAIN CONTENT ──────────────────────────────────────────────────── -->
+    <main id="main-content">
+        <!-- ─── SERVICES ──────────────────────────────────────────────────────── -->
+        <section id="services" aria-labelledby="services-title">
+            <h2 id="services-title" class="row-title">บริการจาก VisaBuddy</h2>
+            <div class="row">
+                <div class="item">
+                    <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html" aria-label="FAQ - คำถามที่พบบ่อย">
+                        <img src="assets/main/1.png" alt="คำถามที่พบบ่อยเกี่ยวกับ Work and Holiday" loading="lazy" />
+                        <div class="item-tooltip">FAQ - คำถามที่พบบ่อย</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="https://visabuddyweb.github.io/VisaBuddy/photo.html" aria-label="ปรับขนาดภาพ 200×265px">
+                        <img src="assets/main/2.png" alt="เครื่องมือปรับขนาดภาพสำหรับวีซ่า" loading="lazy" />
+                        <div class="item-tooltip">ปรับขนาดภาพ 200×265px</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="https://visabuddyweb.github.io/VisaBuddy/username" aria-label="ทดลองกด Username">
+                        <img src="assets/main/3.png" alt="ระบบจองและทดลอง Username" loading="lazy" />
+                        <div class="item-tooltip">ทดลองกด Username</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="https://visabuddyweb.github.io/VisaBuddy/" aria-label="กลับไปหน้าหลัก">
+                        <img src="assets/main/4.png" alt="หน้าหลัก VisaBuddy" loading="lazy" />
+                        <div class="item-tooltip">หน้าหลัก</div>
+                    </a>
+                </div>
             </div>
-            <div class="item">
-                <a href="https://visabuddyweb.github.io/VisaBuddy/photo.html">
-                    <img src="assets/main/2.png" alt="ปรับขนาดภาพ 200×265px" />
-                    <div class="item-tooltip">ปรับขนาดภาพ 200×265px</div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="https://visabuddyweb.github.io/VisaBuddy/username">
-                    <img src="assets/main/3.png" alt="ทดลองกด Username" />
-                    <div class="item-tooltip">ทดลองกด Username</div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="https://visabuddyweb.github.io/VisaBuddy/">
-                    <img src="assets/main/4.png" alt="หน้าหลัก" />
-                    <div class="item-tooltip">หน้าหลัก</div>
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ─── CONTACT / EXTRA ──────────────────────────────────────────────── -->
-    <h2 class="row-title">บริการเพิ่มเติม และ ช่องทางการติดต่อ</h2>
-    <div class="row">
-        <div class="item">
-            <a href="https://line.me/R/ti/p/@166epsjo" target="_blank">
-                <img src="assets/main/Line.png" alt="Line" />
-                <div class="item-tooltip">Line</div>
-            </a>
-        </div>
-        <div class="item">
-            <a href="https://x.com/visa_buddy" target="_blank">
-                <img src="assets/main/X.png" alt="X or Twitter" />
-                <div class="item-tooltip">X or Twitter</div>
-            </a>
-        </div>
-        <div class="item">
-            <a href="https://visabuddyweb.github.io/VisaBuddy/" target="_blank">
-                <img src="assets/main/assis.png" alt="บริการอื่นๆ" />
-                <div class="item-tooltip">บริการอื่นๆ</div>
-            </a>
+        <!-- ─── CONTACT / EXTRA ──────────────────────────────────────────────── -->
+        <section aria-labelledby="contact-title">
+            <h2 id="contact-title" class="row-title">บริการเพิ่มเติม และ ช่องทางการติดต่อ</h2>
+            <div class="row">
+                <div class="item">
+                    <a href="https://line.me/R/ti/p/@166epsjo" target="_blank" rel="noopener noreferrer" aria-label="ติดต่อผ่าน Line">
+                        <img src="assets/main/Line.png" alt="ติดต่อ VisaBuddy ผ่าน Line" loading="lazy" />
+                        <div class="item-tooltip">Line</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="https://x.com/visa_buddy" target="_blank" rel="noopener noreferrer" aria-label="ติดตามบน X (Twitter)">
+                        <img src="assets/main/X.png" alt="ติดตาม VisaBuddy บน X/Twitter" loading="lazy" />
+                        <div class="item-tooltip">X or Twitter</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="https://visabuddyweb.github.io/VisaBuddy/" aria-label="ดูบริการอื่นๆ">
+                        <img src="assets/main/assis.png" alt="บริการช่วยเหลืออื่นๆ จาก VisaBuddy" loading="lazy" />
+                        <div class="item-tooltip">บริการอื่นๆ</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ─── INFO MODAL ───────────────────────────────────────────────────── -->
+    <div class="modal" id="infoModal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="ปิด">&times;</button>
+            <h2 id="modal-title">เกี่ยวกับ VisaBuddy</h2>
+            <p>VisaBuddy คือแพลตฟอร์มที่ออกแบบมาเพื่อช่วยเหลือผู้ที่ต้องการสมัครวีซ่า Work and Holiday (WAH) และ Working Holiday Scheme (WHS)</p>
+            <p>เราให้บริการครบวงจร ตั้งแต่การตอบคำถามที่พบบ่อย เครื่องมือปรับขนาดภาพสำหรับยื่นวีซ่า ไปจนถึงระบบช่วยจองและทดสอบ Username</p>
+            <p>พร้อมทีมงานมืออาชีพที่คอยให้คำปรึกษาตลอด 24 ชั่วโมง</p>
+            <button class="btn" onclick="document.getElementById('infoModal').classList.remove('show')">เข้าใจแล้ว</button>
         </div>
     </div>
 
     <!-- ─── FOOTER ───────────────────────────────────────────────────────── -->
     <footer>
-        <p>.</p>
-        <div class="footer-links">
-            <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html" class="footer-link">คำถามที่พบบ่อย</a>
-            <a href="https://visabuddyweb.github.io/VisaBuddy/#services"   class="footer-link">บริการของเรา</a>
-            <a href="https://visabuddyweb.github.io/VisaBuddy/"            class="footer-link">ศูนย์สื่อ</a>
-            <a href="https://visabuddyweb.github.io/VisaBuddy/#contact"    class="footer-link">วิธีการรับบริการ</a>
-            <a href="https://visabuddyweb.github.io/VisaBuddy/#why"        class="footer-link">ทำไมต้องเป็น VisaBuddy</a>
-            <a href="https://visabuddyweb.github.io/VisaBuddy/#about"      class="footer-link">ความเป็นส่วนตัว</a>
-            <a href="https://visabuddyweb.github.io/VisaBuddy/#about"      class="footer-link">ข้อมูลบริษัท</a>
-            <a href="https://visabuddyweb.github.io/VisaBuddy/#contact"    class="footer-link">ติดต่อเรา</a>
-            <a href="https://visabuddyweb.github.io/VisaBuddy/summary"     class="footer-link">จำนวนผู้สนใจสมัครในปีนี้</a>
+        <div class="footer-section">
+            <h3 class="footer-section-title">เมนูหลัก</h3>
+            <div class="footer-links">
+                <a href="https://visabuddyweb.github.io/VisaBuddy/faq.html" class="footer-link">คำถามที่พบบ่อย</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#services" class="footer-link">บริการของเรา</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/" class="footer-link">ศูนย์สื่อ</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#contact" class="footer-link">ติดต่อเรา</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#why" class="footer-link">ทำไมต้อง VisaBuddy</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#about" class="footer-link">เกี่ยวกับเรา</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/summary" class="footer-link">สถิติผู้สมัคร</a>
+                <a href="https://visabuddyweb.github.io/VisaBuddy/#about" class="footer-link">นโยบายความเป็นส่วนตัว</a>
+            </div>
         </div>
         <p>© 2025 VisaBuddy. All rights reserved.</p>
     </footer>
@@ -395,18 +608,48 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const heroText = document.getElementById('heroText');
-            const infoBtn  = document.getElementById('infoBtn');
+            const infoBtn = document.getElementById('infoBtn');
+            const infoModal = document.getElementById('infoModal');
+            const modalClose = document.getElementById('modalClose');
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const navigationMenu = document.getElementById('navigationMenu');
 
             // Hero text animation
-            setTimeout(() => heroText.classList.add('show'), 3000);
-            infoBtn.addEventListener('click', () => heroText.classList.add('show'));
+            setTimeout(() => heroText.classList.add('show'), 1000);
+
+            // Info button opens modal
+            infoBtn.addEventListener('click', () => {
+                infoModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Close modal
+            modalClose.addEventListener('click', () => {
+                infoModal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal on outside click
+            infoModal.addEventListener('click', (e) => {
+                if (e.target === infoModal) {
+                    infoModal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close modal on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && infoModal.classList.contains('show')) {
+                    infoModal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
 
             // Mobile menu toggle
             mobileMenuToggle.addEventListener('click', () => {
-                navigationMenu.classList.toggle('active');
-                mobileMenuToggle.textContent = navigationMenu.classList.contains('active') ? '✕' : '☰';
+                const isActive = navigationMenu.classList.toggle('active');
+                mobileMenuToggle.textContent = isActive ? '✕' : '☰';
+                mobileMenuToggle.setAttribute('aria-expanded', isActive);
             });
 
             // Close mobile menu when clicking on a link
@@ -414,6 +657,7 @@
                 link.addEventListener('click', () => {
                     navigationMenu.classList.remove('active');
                     mobileMenuToggle.textContent = '☰';
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 });
             });
 
@@ -422,13 +666,39 @@
                 if (!navigationMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                     navigationMenu.classList.remove('active');
                     mobileMenuToggle.textContent = '☰';
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
 
             // Item hover effects
             document.querySelectorAll('.item').forEach(item => {
                 item.addEventListener('mouseenter', () => { item.style.zIndex = '10'; });
-                item.addEventListener('mouseleave', () => { item.style.zIndex = '1';  });
+                item.addEventListener('mouseleave', () => { item.style.zIndex = '1'; });
+            });
+
+            // Lazy load images with error handling
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                img.addEventListener('load', () => {
+                    img.classList.remove('loading');
+                });
+                img.addEventListener('error', () => {
+                    img.alt = 'ไม่สามารถโหลดรูปภาพได้';
+                    img.style.background = '#3f3f3f';
+                });
+            });
+
+            // Smooth scroll for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && document.querySelector(href)) {
+                        e.preventDefault();
+                        document.querySelector(href).scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
             });
         });
     </script>
